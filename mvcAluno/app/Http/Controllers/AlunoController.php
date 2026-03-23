@@ -27,6 +27,28 @@ class AlunoController extends Controller
 
         return redirect()->back()->with('sucess','Aluno Cadastrado com sucesso!');
     }
+
+    public function atualizar($id){
+        $aluno = Aluno::findOrFail($id); // Busca o aluno pelo ID
+        // select * from alunos where id = $id
+        return view('atualizar', compact('aluno'));
+    }
+
+    public function update(Request $request, $id){
+        $request->validate([
+            'nome'=> 'required|string|max:255',
+            'email'=> "required|string|max:255|unique:alunos,email,$id"
+        ]);
+
+        $aluno= Aluno::findOrFail($id);
+
+        $aluno->nome = $request->nome; // atualizando o campo nome
+        $aluno->email = $request->email;// atualizando o campo email
+
+        $aluno->save(); // salvando no banco de dados(fazendo update)
+        return redirect()->back()->with('sucess','Aluno atualizado com sucesso');
+    }
+
 }
 
 ?>
