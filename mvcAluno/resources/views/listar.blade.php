@@ -13,6 +13,9 @@
                 <th>ID</th>
                 <th>NOME</th>
                 <th>EMAIL</th>
+                <th>ID TURMA</th>
+                <th>SERIE</th>
+                <th>NUM SALA</th>
                 <th>Atualizar</th>
                 <th>Deletar</th>
             </th>
@@ -23,7 +26,10 @@
                 <td>{{ $aluno->id}}</td>
                 <td>{{ $aluno->nome}}</td>
                 <td>{{ $aluno->email }}</td>
-                <td> 
+                <td> {{ $aluno->turma?->id}}</td>
+                <td>{{ $aluno->turma?->serie}}</td>
+                <td>{{ $aluno->turma?->numSala}}</td>
+                <td>
                     <a href="{{route('aluno.atualizar', $aluno->id)}}">Atualizar</a>
                 </td>
                 <td> 

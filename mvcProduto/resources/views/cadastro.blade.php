@@ -24,6 +24,18 @@
 
         <label for="qntd">Preço:</label>
         <input type="text" name="preco" id="preco" placeholder="Preço..." require value="{{old('preco')}}">
+        <br><br>
+
+        <label for="setor_id">Setor:</label>
+        <select name="setor_id" id="setor_id" required>
+            <option value="" disabled selected>Selecione um Setor</option>
+
+            @foreach ($setores as $setor)
+                <option value="{{ $setor->id }}">
+                    Setor - {{ $setor->nome }} - N° {{ $setor->nCorredor }}
+                </option>
+            @endforeach
+        </select>
         
         <input type="submit" value="Cadastrar">
     </form>

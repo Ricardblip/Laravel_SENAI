@@ -1,24 +1,45 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProdutoController;
+use App\Http\Controllers\AlunoController;
+use App\Http\Controllers\TurmaController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/produto/listar',[ProdutoController::class, 'listar'])->name('produto.listar');
+// GET - listar os usuários cadastrados
+Route::get('/aluno/listar',[AlunoController::class, 'listar'])->
+name('aluno.listar');
 
-Route::get('/produto/cadastrar', function(){
-    return view('cadastro');
+// Route::get('/aluno/cadastrar', function(){ 
+//     return view('cadastro');
+// })->name('aluno.cadastro');
 
-})->name('produto.cadastro');
-
-//POST - enviar os dados para cadastrar produtos
-Route::post('/produto/salvar',[ProdutoController::class, 'add'])->name('produto.salvar');
+Route::get('/aluno/cadastrar',[AlunoController::class, 'cadastro']
+)->name('aluno.cadastro');
 
 
-//TELA de atualizar
-Route::get('produto/{id}/atualizar', [ProdutoController::class, 'atualizar'])->name('produto.atualizar');
+// POST - enviar os dados para cadastrar usuários
+Route::post('/aluno/salvar',[AlunoController::class, 'add'])
+->name('aluno.salvar');
 
-Route::put('/produto/{id}/update', [ProdutoController::class, 'update'])->name('produto.update');
+// Tela de Atualizar
+Route::get('/aluno/{id}/atualizar', [AlunoController::class, 'atualizar'])
+->name('aluno.atualizar');
+
+Route::put('/aluno/{id}/update',[AlunoController::class, 'update'])
+->name('aluno.update');
+
+Route::delete('/aluno/{id}',[AlunoController::class, 'deletar'])
+->name('aluno.deletar');
+
+// ROTAS DA TURMA
+
+Route::get('/turma/cadastrar', function(){ 
+    return view('cadastroTurma');
+})->name('turma.cadastro');
+
+Route::post('/turma/salvar',[TurmaController::class, 'add'])
+->name('turma.salvar');
+
