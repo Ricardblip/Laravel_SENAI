@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+class Filme extends Model
+{
+    protected $table = 'Filme';
+    
+    protected $fillable = [
+        'titulo',
+        'dataLancamento',
+        'sinopse',
+        'genero',
+        'orcamento',
+        'autor_id', 
+    ];
+
+    public function autor(){
+        return $this->belongsTo(Autor::class);
+    }
+
+}
